@@ -1,0 +1,9 @@
+{
+	"extends": ["stylelint-config-recommended-scss", "stylelint-config-idiomatic-order"],
+	"plugins": ["stylelint-order"],
+	"rules": {
+		"indentation": "tab",
+		"color-hex-case": "upper",
+		"block-no-empty": null
+	}
+}

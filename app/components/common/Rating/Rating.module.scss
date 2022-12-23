@@ -1,0 +1,13 @@
+.star {
+	&:not(:last-child) {
+		padding-right: 5px;
+	}
+}
+
+.fill {
+	fill: var(--primary)
+}
+
+.editable {
+	cursor: pointer;
+}

@@ -1,20 +1,37 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": false,
+		"strict": true,
+		"strictPropertyInitialization": false,
+		"skipLibCheck": true,
+		"strictNullChecks": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"baseUrl": "app",
+		"paths": {
+			"@components": ["components/index"],
+			"@components/*": ["components/common/*", "components/*"],
+			"@ui/*": ["components/common/UI/*"],
+			"@styles/*": ["styles/*"],
+			"@screens/*": ["components/screens/*"],
+			"@layouts/*": ["layouts/*"],
+			"@assets/*": ["assets/*"],
+			"@redux/*": ["redux/*"],
+			"@hooks/*": ["hooks/*"],
+			"@axios/*": ["axios/*"],
+			"@util/*": ["util/*"],
+			"@services/*": ["services/*"]
+		}
+	},
+	"include": ["next-env-custom.d.ts", "images.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
 }
