@@ -1,6 +1,7 @@
 import { Footer } from "@layouts/Footer"
 import { Header } from "@layouts/Header"
 import { Sidebar } from "@layouts/Sidebar"
+import { AppContextProvider, IAppContext } from "@context/app.context"
 import { FC } from "react"
 import { WrapperProps } from "./Wrapper.interface"
 import styles from "./Wrapper.module.scss"
@@ -16,12 +17,14 @@ export const Wrapper: FC<WrapperProps> = ({ children }) => {
 	)
 }
 
-export const withWrapper = <T extends Record<string, unknown>>(Component: FC<T>) => {
+export const withWrapper = <T extends Record<string, unknown> & IAppContext>(Component: FC<T>) => {
 	return function withWrapperComponent(props: T) {
 		return (
-			<Wrapper>
-				<Component {...props} />
-			</Wrapper>
+			<AppContextProvider menu={props.menu} firstCategory={0}>
+				<Wrapper>
+					<Component {...props} />
+				</Wrapper>
+			</AppContextProvider>
 		)
 	}
 }

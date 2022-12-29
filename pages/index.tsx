@@ -1,10 +1,11 @@
 import { $axiosInstance } from "@axios/instance"
 import { Button, Htag, Paragraph, Rating, Tag } from "@components"
+import { MenuItem } from "@interfaces/menu.interface"
 import { withWrapper } from "@layouts/Wrapper"
 import type { GetStaticProps, NextPage } from "next"
 import { useState } from "react"
 
-const Home: NextPage = () => {
+const Home: NextPage<HomeProps> = ({}) => {
 	const [rating, setRating] = useState(3)
 	return (
 		<>
@@ -43,11 +44,18 @@ export default withWrapper(Home)
 
 export const getStaticProps: GetStaticProps = async () => {
 	const firstCategory = 0
-	const { data: menu } = await $axiosInstance.post("top-page/find")
+	const { data: menu } = await $axiosInstance.post<MenuItem>("top-page/find", {
+		firstCategory
+	})
 	return {
 		props: {
 			menu,
 			firstCategory
 		}
 	}
+}
+
+export interface HomeProps extends Record<string, unknown> {
+	menu: MenuItem[]
+	firstCategory: number
 }

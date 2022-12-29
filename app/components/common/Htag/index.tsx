@@ -1,10 +1,10 @@
-import { FC } from "react"
+import { FC, PropsWithChildren } from "react"
 import { HtagProps } from "./Htag.interface"
 import cn from "classnames"
 
 import styles from "./Htag.module.scss"
 
-export const Htag: FC<HtagProps> = ({ tag, children, className, ...props }) => {
+export const Htag: FC<PropsWithChildren<HtagProps>> = ({ tag, children, className, ...props }) => {
 	switch (tag) {
 		case "h1":
 			return (
