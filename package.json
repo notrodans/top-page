@@ -6,7 +6,9 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"lint:fix": "next lint --fix",
+		"format": "npx prettier --write */**/*.ts */**/*.tsx"
 	},
 	"dependencies": {
 		"axios": "^1.2.1",
@@ -18,6 +20,7 @@
 	},
 	"devDependencies": {
 		"@svgr/webpack": "^6.5.1",
+		"@trivago/prettier-plugin-sort-imports": "^4.0.0",
 		"@types/axios": "^0.14.0",
 		"@types/node": "18.11.15",
 		"@types/react": "18.0.26",
@@ -28,8 +31,6 @@
 		"eslint-config-airbnb-typescript": "^17.0.0",
 		"eslint-config-next": "13.0.7",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-import-resolver-typescript": "^3.5.2",
-		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"prettier": "^2.8.1",

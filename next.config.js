@@ -24,9 +24,9 @@ const nextConfig = {
 				titleProp: true
 			},
 			test: /\.svg$/
-		})
-		return config
+		});
+		return config;
 	}
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

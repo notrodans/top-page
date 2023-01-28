@@ -1,47 +1,51 @@
-import { $axiosInstance } from "@axios/instance"
-import { firstLevelMenu } from "@helpers/helpers"
-import { MenuItem } from "@interfaces/menu.interface"
-import { withWrapper } from "@layouts/Wrapper"
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import { API } from "@helpers/api";
+import { firstLevelMenu } from "@helpers/helpers";
+import { MenuItem } from "@interfaces/menu.interface";
+import { withWrapper } from "@layouts/Wrapper";
+import axios from "axios";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { ParsedUrlQuery } from "querystring";
+import { FC } from "react";
 
-const Type: NextPage<CoursesProps> = ({ firstCategory }) => {
-	return <>Type: {firstCategory}</>
-}
+const Type: FC<TypeProps> = ({ firstCategory }: TypeProps) => {
+	return <>Type: {firstCategory}</>;
+};
 
-export default withWrapper(Type)
+export default withWrapper(Type);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const paths = firstLevelMenu.map(m => "/" + m.route)
 	return {
-		paths,
+		paths: firstLevelMenu.map(m => "/" + m.route),
 		fallback: true
-	}
-}
+	};
+};
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<TypeProps> = async ({
+	params
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
 	if (!params) {
 		return {
 			notFound: true
-		}
+		};
 	}
-	const firstCategoryItem = firstLevelMenu.find(m => m.route == params.type)
+	const firstCategoryItem = firstLevelMenu.find(m => m.route == params.type);
 	if (!firstCategoryItem) {
 		return {
 			notFound: true
-		}
+		};
 	}
-	const { data: menu } = await $axiosInstance.post<MenuItem[]>("top-page/find", {
+	const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
 		firstCategory: firstCategoryItem.id
-	})
+	});
 	return {
 		props: {
 			menu,
 			firstCategory: firstCategoryItem.id
 		}
-	}
-}
+	};
+};
 
-export interface CoursesProps extends Record<string, unknown> {
-	menu: MenuItem[]
-	firstCategory: number
+interface TypeProps extends Record<string, unknown> {
+	menu: MenuItem[];
+	firstCategory: number;
 }

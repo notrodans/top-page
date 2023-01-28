@@ -1,0 +1,75 @@
+@use "sass:math";
+
+.menu {
+	font-family: "Noto Sans", sans-serif;
+}
+
+.firstLevel {
+	display: grid;
+	align-items: center;
+	margin-top: 20px;
+	font-size: 18px;
+	font-weight: 500;
+	gap: 20px;
+	grid-template-columns: 24px 1fr;
+	line-height: 25px;
+
+	&Active,
+	&:hover {
+		color: var(--primary);
+		svg {
+			fill: currentColor;
+		}
+	}
+}
+
+.firstLevelList {
+	padding: 0;
+	list-style: none;
+}
+
+.secondLevel {
+	padding: 0;
+	border: none;
+	margin-bottom: 10px;
+	background: none;
+	color: var(--gray-dark);
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.secondBlock {
+	padding: 0 0 0 32px;
+	border-left: 1px solid #dfdfdf;
+	margin-top: 15px;
+	margin-left: 12px;
+	list-style: none;
+}
+
+.secondLevelBlock {
+	display: none;
+	overflow: hidden;
+	padding: 0;
+	list-style: none;
+
+	&Active {
+		display: block;
+	}
+}
+
+.thirdLevel {
+	display: block;
+	margin-bottom: 10px;
+	color: var(--gray-dark);
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+	outline-offset: -1px;
+
+	&Active,
+	&:hover {
+		color: var(--primary);
+	}
+}

@@ -16,7 +16,7 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "app",
+		"baseUrl": ".",
 		"paths": {
 			"@components": ["components/index"],
 			"@components/*": ["components/common/*", "components/*"],
@@ -28,7 +28,7 @@
 			"@layouts/*": ["layouts/*"],
 			"@assets/*": ["assets/*"],
 			"@hooks/*": ["hooks/*"],
-			"@axios/*": ["axios/*"],
+			"@pages/*": ["pages/*"],
 			"@util/*": ["util/*"],
 			"@services/*": ["services/*"]
 		}

@@ -1,12 +1,13 @@
-import { $axiosInstance } from "@axios/instance"
-import { Button, Htag, Paragraph, Rating, Tag } from "@components"
-import { MenuItem } from "@interfaces/menu.interface"
-import { withWrapper } from "@layouts/Wrapper"
-import type { GetStaticProps, NextPage } from "next"
-import { useState } from "react"
+import { MenuItem } from "../interfaces/menu.interface";
+import { Button, Htag, Paragraph, Rating, Tag } from "@components";
+import { API } from "@helpers/api";
+import { withWrapper } from "@layouts/Wrapper";
+import axios from "axios";
+import type { GetStaticProps, NextPage } from "next";
+import { useState } from "react";
 
 const Home: NextPage<HomeProps> = ({}) => {
-	const [rating, setRating] = useState(3)
+	const [rating, setRating] = useState(3);
 	return (
 		<>
 			<Htag tag='h1'>Hello</Htag>
@@ -37,25 +38,25 @@ const Home: NextPage<HomeProps> = ({}) => {
 			</Tag>
 			<Rating rating={rating} setRating={setRating} isEditable />
 		</>
-	)
-}
+	);
+};
 
-export default withWrapper(Home)
+export default withWrapper(Home);
 
 export const getStaticProps: GetStaticProps = async () => {
-	const firstCategory = 0
-	const { data: menu } = await $axiosInstance.post<MenuItem>("top-page/find", {
+	const firstCategory = 0;
+	const { data: menu } = await axios.post<MenuItem>(API.topPage.find, {
 		firstCategory
-	})
+	});
 	return {
 		props: {
 			menu,
 			firstCategory
 		}
-	}
-}
+	};
+};
 
 export interface HomeProps extends Record<string, unknown> {
-	menu: MenuItem[]
-	firstCategory: number
+	menu: MenuItem[];
+	firstCategory: number;
 }
