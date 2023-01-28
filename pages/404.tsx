@@ -1,13 +1,12 @@
-import { Htag } from "../components";
-import { withWrapper } from "@layouts/Wrapper";
-import React, { FC } from "react";
+import { Htag } from "../components/common";
+import { withLayout } from "@layouts/Wrapper";
 
-export const Error404: FC = () => {
+export function Error404() {
 	return (
 		<>
 			<Htag tag='h1'>Ошибка 404</Htag>
 		</>
 	);
-};
+}
 
-export default withWrapper(Error404);
+export default withLayout(Error404);

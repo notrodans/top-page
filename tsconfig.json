@@ -18,8 +18,9 @@
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"@components": ["components/index"],
-			"@components/*": ["components/common/*", "components/*"],
+			"@components/*": [ "components/pages/*", "components/common/*"],
+			"@components/pages": ["components/pages/index"],
+			"@components/common": ["components/common/index"],
 			"@interfaces/*": ["interfaces/*"],
 			"@context/*": ["context/*"],
 			"@styles/*": ["styles/*"],

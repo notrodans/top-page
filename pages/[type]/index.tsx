@@ -1,17 +1,16 @@
 import { API } from "@helpers/api";
 import { firstLevelMenu } from "@helpers/helpers";
 import { MenuItem } from "@interfaces/menu.interface";
-import { withWrapper } from "@layouts/Wrapper";
+import { withLayout } from "@layouts/Wrapper";
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { FC } from "react";
 
-const Type: FC<TypeProps> = ({ firstCategory }: TypeProps) => {
+function Type({ firstCategory }: TypeProps) {
 	return <>Type: {firstCategory}</>;
-};
+}
 
-export default withWrapper(Type);
+export default withLayout(Type);
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	return {

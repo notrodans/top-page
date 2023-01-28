@@ -1,7 +1,7 @@
 import { MenuItem } from "../interfaces/menu.interface";
-import { Button, Htag, Paragraph, Rating, Tag } from "@components";
+import { Button, Htag, Paragraph, Rating, Tag } from "@components/index";
 import { API } from "@helpers/api";
-import { withWrapper } from "@layouts/Wrapper";
+import { withLayout } from "@layouts/Wrapper";
 import axios from "axios";
 import type { GetStaticProps, NextPage } from "next";
 import { useState } from "react";
@@ -41,7 +41,7 @@ const Home: NextPage<HomeProps> = ({}) => {
 	);
 };
 
-export default withWrapper(Home);
+export default withLayout(Home);
 
 export const getStaticProps: GetStaticProps = async () => {
 	const firstCategory = 0;

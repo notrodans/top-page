@@ -1,13 +1,12 @@
-import { Htag } from "../components";
-import { withWrapper } from "@layouts/Wrapper";
-import React, { FC } from "react";
+import { Htag } from "../components/common";
+import { withLayout } from "@layouts/Wrapper";
 
-const Error500: FC = () => {
+function Error500() {
 	return (
 		<>
 			<Htag tag='h1'>Ошибка 500</Htag>
 		</>
 	);
-};
+}
 
-export default withWrapper(Error500);
+export default withLayout(Error500);

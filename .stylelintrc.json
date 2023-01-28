@@ -4,6 +4,12 @@
 	"rules": {
 		"indentation": "tab",
 		"color-hex-case": "upper",
-		"block-no-empty": null
+		"block-no-empty": null,
+		"max-empty-lines": [
+			1,
+			{
+				"message": "строчку убери"
+			}
+		]
 	}
 }

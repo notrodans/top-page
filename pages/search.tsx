@@ -1,15 +1,14 @@
 import { API } from "../helpers/api";
 import { MenuItem } from "../interfaces/menu.interface";
-import { withWrapper } from "@layouts/Wrapper";
+import { withLayout } from "@layouts/Wrapper";
 import axios from "axios";
 import { GetStaticProps } from "next";
-import React from "react";
 
-function Search(): JSX.Element {
+function Search() {
 	return <>Search</>;
 }
 
-export default withWrapper(Search);
+export default withLayout(Search);
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	const firstCategory = 0;

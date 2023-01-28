@@ -8,6 +8,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"lint:fix": "next lint --fix",
+		"css-lint:fix": "stylelint \"**/*.scss\" --fix",
 		"format": "npx prettier --write */**/*.ts */**/*.tsx"
 	},
 	"dependencies": {

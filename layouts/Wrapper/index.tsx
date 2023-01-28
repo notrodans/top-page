@@ -17,8 +17,8 @@ export const Wrapper: FC<WrapperProps> = ({ children }) => {
 	);
 };
 
-export const withWrapper = <T extends Record<string, unknown> & IAppContext>(Component: FC<T>) => {
-	return function withWrapperComponent(props: T) {
+export const withLayout = <T extends Record<string, unknown> & IAppContext>(Component: FC<T>) => {
+	return function withLayoutComponent(props: T) {
 		return (
 			<AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
 				<Wrapper>

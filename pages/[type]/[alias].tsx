@@ -1,17 +1,18 @@
+import { TopPageComponentProps } from "@components/TopPageComponent/TopPage.interface";
+import { TopPageComponent } from "@components/index";
 import { API } from "@helpers/api";
 import { firstLevelMenu } from "@helpers/helpers";
 import { MenuItem } from "@interfaces/menu.interface";
 import { ProductModel } from "@interfaces/product.interface";
 import { TopLevelCategory, TopPageModel } from "@interfaces/top-page.interface";
-import { withWrapper } from "@layouts/Wrapper";
+import { withLayout } from "@layouts/Wrapper";
 import { Error404 } from "@pages/404";
 import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
-import { FC } from "react";
 
-const TopPage: FC<TopPageProps> = ({ firstCategory, page, products }) => {
+function TopPage({ firstCategory, page, products }: TopPageProps) {
 	if (!page || !products) {
 		return <Error404 />;
 	}
@@ -25,12 +26,12 @@ const TopPage: FC<TopPageProps> = ({ firstCategory, page, products }) => {
 				<meta property='og:description' content={page.metaDescription} />
 				<meta property='og:type' content='article' />
 			</Head>
-			title: {page.title}
+			<TopPageComponent firstCategory={firstCategory} page={page} products={products} />
 		</>
 	);
-};
+}
 
-export default withWrapper(TopPage);
+export default withLayout(TopPage);
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	let paths: string[] = [];
@@ -46,7 +47,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<TopPageProps> = async ({
+export const getStaticProps: GetStaticProps<TopPageComponentProps> = async ({
 	params
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
 	if (!params) {
@@ -54,7 +55,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 			notFound: true
 		};
 	}
-	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type);
+	const firstCategoryItem = firstLevelMenu.find(m => m.route == params.type);
 	if (!firstCategoryItem) {
 		return {
 			notFound: true
@@ -90,7 +91,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 	}
 };
 
-interface TopPageProps extends Record<string, unknown> {
+export interface TopPageProps extends Record<string, unknown> {
 	menu: MenuItem[];
 	firstCategory: TopLevelCategory;
 	page: TopPageModel;
