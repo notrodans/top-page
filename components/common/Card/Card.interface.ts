@@ -1,9 +1,7 @@
 import { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from "react";
 
-export interface TagProps
+export interface CardProps
 	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
 		PropsWithChildren {
-	size?: "s" | "m";
-	color?: "ghost" | "red" | "gray" | "green" | "primary";
-	href?: string;
+	color?: "white" | "blue";
 }

@@ -17,7 +17,7 @@ export const Htag: FC<PropsWithChildren<HtagProps>> = ({ tag, children, classNam
 					{children}
 				</h2>
 			);
-		case "h2":
+		case "h3":
 			return (
 				<h3 {...props} className={cn(styles.h3, className)}>
 					{children}

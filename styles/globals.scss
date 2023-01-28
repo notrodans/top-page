@@ -1,10 +1,10 @@
 html,
 body {
-	padding: 0;
 	margin: 0;
-	background: #F5F6F8;
+	padding: 0;
 	color: var(--black);
 	font-family: var(--font-family);
+	background: #F5F6F8;
 }
 
 body {
@@ -35,5 +35,5 @@ a {
 	--red: #FC836D;
 	--green: #1DC37E;
 	--green-light: #C8F8E4;
-	--font-family: "Noto Sans KR", sans-serif;
+	--font-family: "Noto Sans KR", "Noto Sans", sans-serif;
 }

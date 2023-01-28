@@ -1,5 +1,5 @@
 import { MenuItem } from "../interfaces/menu.interface";
-import { Button, Htag, Paragraph, Rating, Tag } from "@components/index";
+import { Button, Htag, Paragraph, Rating, Tag } from "@components/common";
 import { API } from "@helpers/api";
 import { withLayout } from "@layouts/Wrapper";
 import axios from "axios";

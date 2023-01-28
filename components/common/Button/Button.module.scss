@@ -1,11 +1,11 @@
 .button {
 	display: inline-block;
 	padding: 10px;
+	font-size: 14px;
+	text-align: center;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	font-size: 14px;
-	text-align: center;
 	transition: all 0.2s ease 0s;
 
 	svg {
@@ -14,8 +14,8 @@
 }
 
 .primary {
-	background-color: var(--primary);
 	color: var(--white);
+	background-color: var(--primary);
 
 	&:hover {
 		background-color: var(--primary-hover);
@@ -27,13 +27,13 @@
 }
 
 .ghost {
-	border: 1px solid var(--gray-white);
-	background-color: none;
 	color: var(--black);
+	background-color: none;
+	border: 1px solid var(--gray-white);
 
 	&:hover {
-		background-color: var(--primary-hover);
 		color: var(--white);
+		background-color: var(--primary-hover);
 
 		svg {
 			fill: var(--white);

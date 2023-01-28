@@ -25,26 +25,26 @@
 }
 
 .red {
-	background-color: #DE0000;
 	color: var(--white);
 	font-weight: 600;
+	background-color: #DE0000;
 }
 
 .gray {
-	background-color: #B3C0D9;
 	color: var(--white);
 	font-weight: 600;
+	background-color: #B3C0D9;
 }
 
 .green {
-	background-color: var(--green-light);
 	color: var(--green);
 	font-weight: 600;
+	background-color: var(--green-light);
 }
 
 .primary {
-	border: 1px solid var(--primary);
-	background-color: var(--gren-light);
 	color: var(--primary);
 	font-weight: 600;
+	background-color: var(--gren-light);
+	border: 1px solid var(--primary);
 }
