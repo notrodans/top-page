@@ -1,7 +1,7 @@
-import { TopPageAdvantage } from "@interfaces/top-page.interface";
+import { ProductModel } from "@interfaces/product.interface";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-export interface advantagesDataProps
+export interface ProductProps
 	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	advantages: TopPageAdvantage[];
+	product: ProductModel;
 }

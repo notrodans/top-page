@@ -1,0 +1,19 @@
+@use "sass:math";
+
+.input {
+	padding: 8px 15px;
+	color: var(--black);
+	font-family: var(--font-family);
+	background: var(--white);
+	border: none;
+	border-radius: 5px;
+	outline-color: var(--primary);
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+
+	&::placeholder {
+		color: #A4A4A4;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: math.div(22, 16);
+	}
+}

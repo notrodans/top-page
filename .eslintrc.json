@@ -6,7 +6,6 @@
 	"overrides": [],
 	"parser": "@typescript-eslint/parser",
 	"extends": [
-		"next",
 		"plugin:@typescript-eslint/recommended",
 		"next/core-web-vitals",
 		"plugin:react-hooks/recommended",

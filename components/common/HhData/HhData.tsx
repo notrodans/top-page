@@ -18,7 +18,7 @@ export const HhData: FC<hhDataProps> = ({ count, juniorSalary, middleSalary, sen
 					<div className={styles.salaryValue}>{priceRu(juniorSalary)}</div>
 					<div className={styles.rate}>
 						<RateIcon className={styles.field} />
-						<RateIcon className={styles.field} />
+						<RateIcon />
 						<RateIcon />
 					</div>
 				</div>

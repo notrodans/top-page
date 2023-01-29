@@ -1,0 +1,26 @@
+@use "sass:math";
+
+.advantage {
+	display: grid;
+	grid-template-columns: 50px 1fr;
+	gap: 20px;
+	align-items: center;
+
+	&:not(:last-child) {
+		margin-bottom: 30px;
+	}
+}
+
+.icon {
+}
+
+.title {
+	color: #3B434E;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: math.div(27, 20);
+}
+
+.vline {
+	align-self: stretch;
+}

@@ -1,5 +1,5 @@
 import { MenuItem } from "../interfaces/menu.interface";
-import { Button, Htag, Paragraph, Rating, Tag } from "@components/common";
+import { Button, Htag, Input, Paragraph, Rating, Tag, TextArea } from "@components/common";
 import { API } from "@helpers/api";
 import { withLayout } from "@layouts/Wrapper";
 import axios from "axios";
@@ -37,6 +37,8 @@ const Home: NextPage<HomeProps> = ({}) => {
 				Ghost
 			</Tag>
 			<Rating rating={rating} setRating={setRating} isEditable />
+			<Input placeholder='Тест' />
+			<TextArea placeholder='hehe' />
 		</>
 	);
 };

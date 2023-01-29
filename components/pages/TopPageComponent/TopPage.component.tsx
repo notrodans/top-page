@@ -1,34 +1,56 @@
-import { AdvantagesData, HhData, Htag, Tag } from "@components/common";
-import { FC } from "react";
+import { Advantages, HhData, Htag, Product, Sort, Tag } from "@components/common";
+import { SortEnum } from "@components/Sort/Sort.interface";
+import { TopLevelCategory } from "@interfaces/top-page.interface";
+import { FC, useReducer } from "react";
+import { sortReducer } from "./sort.reducer";
 import { TopPageComponentProps } from "./TopPage.interface";
 import styles from "./TopPage.module.scss";
 
 export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, page, products }) => {
+	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, {
+		products,
+		sort: SortEnum.Rating
+	});
+
+	const setSort = (sort: SortEnum) => {
+		dispatchSort({ type: sort });
+	};
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
 				<Htag tag='h2'>{page.title}</Htag>
-				{products && (
+				{sortedProducts && (
 					<Tag size='s' color='gray'>
 						{products.length}
 					</Tag>
 				)}
-				<span>Сортировка</span>
+				<Sort sort={sort} setSort={setSort} />
 			</div>
-			<div>{products && products.map(p => <div key={p._id}>{p.title}</div>)}</div>
+			{sortedProducts && sortedProducts.map(p => <Product key={p._id} product={p} />)}
 			<div className={styles.hhTitle}>
 				<Htag tag='h2'>Вакансии - {page.category}</Htag>
 				<Tag color='red' size='m'>
 					hh.ru
 				</Tag>
 			</div>
-			<HhData {...page.hh} />
-			<AdvantagesData advantages={page.advantages} />
+			{firstCategory === TopLevelCategory.Courses && page.hh && <HhData {...page.hh} />}
+			{page.advantages && page.advantages.length > 0 && (
+				<>
+					<Htag tag='h2'>Преимущества</Htag>
+					<div className={styles.advantages}>
+						<Advantages advantages={page.advantages} />
+					</div>
+				</>
+			)}
+			{page.seoText && (
+				<div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText }} />
+			)}
 			<div className={styles.tags}>
 				<Htag tag='h2'>Получаемые навыки</Htag>
-				{page.tags.map(tag => (
-					<Tag color='primary' key={tag}>
-						{tag[0].toUpperCase() + tag.slice(1)}
+				{page.tags.map(t => (
+					<Tag key={t} color='primary'>
+						{t[0].toUpperCase() + t.slice(1)}
 					</Tag>
 				))}
 			</div>
