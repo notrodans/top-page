@@ -1,12 +1,13 @@
 import { Button, Card, Rating, Tag } from "@components/common";
 import { Divider } from "@components/Divider/Divider";
 import { declOfNumber, priceRu } from "@helpers/helpers";
+import cn from "classnames";
 import Image from "next/image";
 import { FC } from "react";
 import { ProductProps } from "./Product.interface";
 import styles from "./Product.module.scss";
 
-export const Product: FC<ProductProps> = ({ product, className, ...props }) => {
+export const Product: FC<ProductProps> = ({ product }) => {
 	return (
 		<Card className={styles.product}>
 			<div className={styles.logo}>
@@ -73,7 +74,7 @@ export const Product: FC<ProductProps> = ({ product, className, ...props }) => {
 				</div>
 			</div>
 			<div className={styles.hr}>
-				<Divider className={styles.hr} />
+				<Divider className={cn(styles.hr, styles.hr2)} />
 			</div>
 			<div className={styles.actions}>
 				<Button className={styles.button} appearance='primary'>

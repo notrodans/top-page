@@ -4,6 +4,10 @@
 	gap: 20px;
 	align-items: baseline;
 	justify-items: left;
+
+	@media (max-width: 640px){
+		grid-template-columns: auto 1fr;
+	}
 }
 
 .hhTitle {
