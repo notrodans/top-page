@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		domains: ["courses-top.ru"]
+		domains: ["courses-top.ru", "cdn-bucket.hb.bizmrg.com"]
 	},
 	reactStrictMode: true,
 	swcMinify: true,

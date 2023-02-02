@@ -1,0 +1,89 @@
+@use "sass:math";
+
+.reviewForm {
+	display: grid;
+	grid-template-columns: [start] auto 1fr auto [end];
+	gap: 20px 30px;
+	font-size: 14px;
+	line-height: math.div(24, 14);
+}
+
+.description, .submit {
+	grid-column: start / end;
+}
+
+.submit {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	row-gap: 20px;
+}
+
+.title {
+	@media (min-width: 640px){
+		justify-self: left;
+	}
+}
+
+.info {
+	margin-left: 15px;
+}
+
+.rating {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 10px;
+}
+
+.panel {
+	position: relative;
+	margin-top: 20px;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+.success {
+	background: var(--green-light);
+}
+
+.close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+}
+
+.error {
+	position: relative;
+	margin-top: 20px;
+	padding: 20px;
+	background: var(--red-light);
+	border-radius: 5px;
+
+	.close {
+		line {
+			stroke: var(--red-light);
+		}
+	}
+}
+
+.successTitle {
+	font-weight: 700;
+}
+
+@media (max-width: 1100px){
+	.reviewForm {
+		grid-template-columns: [start] auto 1fr [end];
+	}
+	.rating {
+		grid-column: start / end;
+	}
+}
+
+@media (max-width: 640px){
+	.reviewForm {
+		grid-template-columns: [start] 1fr [end];
+	}
+	.submit {
+		grid-template-columns: auto;
+	}
+}

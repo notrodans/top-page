@@ -1,7 +1,7 @@
 import { Advantages, HhData, Htag, Product, Sort, Tag } from "@components/common";
 import { SortEnum } from "@components/Sort/Sort.interface";
 import { TopLevelCategory } from "@interfaces/top-page.interface";
-import { FC, useReducer } from "react";
+import { FC, useEffect, useReducer } from "react";
 import { sortReducer } from "./sort.reducer";
 import { TopPageComponentProps } from "./TopPage.interface";
 import styles from "./TopPage.module.scss";
@@ -16,11 +16,15 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, pag
 		dispatchSort({ type: sort });
 	};
 
+	useEffect(() => {
+		dispatchSort({ type: "reset", initialState: products });
+	}, [products]);
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
 				<Htag tag='h2'>{page.title}</Htag>
-				{sortedProducts && (
+				{products && (
 					<Tag size='s' color='gray'>
 						{products.length}
 					</Tag>
@@ -46,14 +50,12 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, pag
 			{page.seoText && (
 				<div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText }} />
 			)}
-			<div className={styles.tags}>
-				<Htag tag='h2'>Получаемые навыки</Htag>
-				{page.tags.map(t => (
-					<Tag key={t} color='primary'>
-						{t[0].toUpperCase() + t.slice(1)}
-					</Tag>
-				))}
-			</div>
+			<Htag tag='h2'>Получаемые навыки</Htag>
+			{page.tags.map(t => (
+				<Tag key={t} color='primary'>
+					{t[0].toUpperCase() + t.slice(1)}
+				</Tag>
+			))}
 		</div>
 	);
 };

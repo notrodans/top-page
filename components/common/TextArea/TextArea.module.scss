@@ -1,6 +1,7 @@
 @use "sass:math";
 
 .textarea {
+	width: 100%;
 	min-height: 80px;
 	padding: 7px 15px;
 	color: var(--black);
@@ -18,4 +19,19 @@
 		font-size: 16px;
 		line-height: math.div(22, 16);
 	}
+}
+
+.error {
+	outline-color: var(--red);
+}
+
+.textareaWrapper {
+	position: relative;
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -15px;
+	left: 0;
+	color: var(--red);
 }

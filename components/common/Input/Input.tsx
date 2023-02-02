@@ -1,8 +1,21 @@
 import cn from "classnames";
-import { FC } from "react";
+import { forwardRef } from "react";
 import { InputProps } from "./Input.interface";
 import styles from "./Input.module.scss";
 
-export const Input: FC<InputProps> = ({ className, ...props }) => {
-	return <input className={cn(styles.input, className)} {...props} />;
-};
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+	({ error, className, ...props }, ref) => {
+		return (
+			<div className={cn(styles.inputWrapper, className)}>
+				<input
+					className={cn(styles.input, {
+						[styles.error]: error
+					})}
+					ref={ref}
+					{...props}
+				/>
+				{error && <span className={styles.errorMessage}>{error.message}</span>}
+			</div>
+		);
+	}
+);
