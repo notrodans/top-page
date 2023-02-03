@@ -14,7 +14,7 @@
 	font-size: 18px;
 	line-height: 25px;
 
-	&Active,
+	&Opened,
 	&:hover {
 		color: var(--primary);
 		svg {
@@ -26,6 +26,14 @@
 .firstLevelList {
 	padding: 0;
 	list-style: none;
+}
+
+.secondBlock {
+	margin-top: 15px;
+	margin-left: 12px;
+	padding: 0 0 0 32px;
+	list-style: none;
+	border-left: 1px solid #DFDFDF;
 }
 
 .secondLevel {
@@ -40,23 +48,10 @@
 	cursor: pointer;
 }
 
-.secondBlock {
-	margin-top: 15px;
-	margin-left: 12px;
-	padding: 0 0 0 32px;
-	list-style: none;
-	border-left: 1px solid #DFDFDF;
-}
-
 .secondLevelBlock {
-	display: none;
 	padding: 0;
 	overflow: hidden;
 	list-style: none;
-
-	&Active {
-		display: block;
-	}
 }
 
 .thirdLevel {

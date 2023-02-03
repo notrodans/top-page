@@ -5,13 +5,23 @@ import { Footer } from "@layouts/Footer";
 import { Header } from "@layouts/Header";
 import { Sidebar } from "@layouts/Sidebar";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 export const Wrapper: FC<WrapperProps> = ({ children }) => {
 	return (
 		<div className={styles.wrapper}>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
-			<main className={styles.body}>{children}</main>
+			<motion.main
+				className={styles.body}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				transition={{
+					stiffness: 300
+				}}>
+				{children}
+			</motion.main>
 			<Footer className={styles.footer} />
 		</div>
 	);

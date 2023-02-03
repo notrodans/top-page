@@ -14,7 +14,7 @@
 	display: none;
 	grid-area: header;
 	@media (max-width: 767.98px) {
-		display: block;
+		display: grid;
 	}
 }
 

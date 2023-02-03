@@ -1,4 +1,4 @@
-import { Advantages, HhData, Htag, Product, Sort, Tag } from "@components/common";
+import { Advantages, HhData, Htag, Product, Sort, Tag, Up } from "@components/common";
 import { SortEnum } from "@components/Sort/Sort.interface";
 import { TopLevelCategory } from "@interfaces/top-page.interface";
 import { FC, useEffect, useReducer } from "react";
@@ -17,11 +17,12 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, pag
 	};
 
 	useEffect(() => {
-		dispatchSort({ type: "reset", initialState: products });
+		dispatchSort({ type: SortEnum.Reset, initialState: products });
 	}, [products]);
 
 	return (
 		<div className={styles.wrapper}>
+			<Up />
 			<div className={styles.title}>
 				<Htag tag='h2'>{page.title}</Htag>
 				{products && (
@@ -31,7 +32,10 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, pag
 				)}
 				<Sort sort={sort} setSort={setSort} />
 			</div>
-			{sortedProducts && sortedProducts.map(p => <Product key={p._id} product={p} />)}
+			{sortedProducts &&
+				sortedProducts.map(p => (
+					<Product layout className={styles.product} key={p._id} product={p} />
+				))}
 			<div className={styles.hhTitle}>
 				<Htag tag='h2'>Вакансии - {page.category}</Htag>
 				<Tag color='red' size='m'>
