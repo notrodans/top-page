@@ -87,6 +87,7 @@ export const Menu: FC = () => {
 					return (
 						<li key={m._id.secondCategory}>
 							<button
+								tabIndex={0}
 								onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, m._id.secondCategory)}
 								className={styles.secondLevel}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
@@ -99,7 +100,7 @@ export const Menu: FC = () => {
 								initial={m.isOpened ? "visible" : "hidden"}
 								animate={m.isOpened ? "visible" : "hidden"}
 								className={styles.secondLevelBlock}>
-								{buildThirdLevel(m.pages, menuItem.route)}
+								{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
 							</motion.ul>
 						</li>
 					);
@@ -108,11 +109,12 @@ export const Menu: FC = () => {
 		);
 	};
 
-	const buildThirdLevel = (pages: PageItem[], route: string) => {
+	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
 		return pages.map(p => (
-			<motion.div key={p._id} variants={variantsChildren}>
+			<motion.li key={p._id} variants={variantsChildren}>
 				<Link href={`/${route}/${p.alias}`}>
 					<a
+						tabIndex={isOpened ? 0 : -1}
 						className={cn(styles.thirdLevel, {
 							[styles.thirdLevelActive]:
 								`/${route}/${p.alias}` === `/${router.query.type}/${router.query.alias}`
@@ -120,7 +122,7 @@ export const Menu: FC = () => {
 						{p.category}
 					</a>
 				</Link>
-			</motion.div>
+			</motion.li>
 		));
 	};
 	return <div className={styles.menu}>{buildFirstLevel()}</div>;

@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
 	return (
-		<AnimatePresence mode='wait'>
+		<AnimatePresence mode='wait' initial={false}>
 			<Head>
 				<title>MyTop - наш лучший топ</title>
 			</Head>

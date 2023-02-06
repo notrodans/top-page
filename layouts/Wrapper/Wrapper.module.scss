@@ -10,12 +10,22 @@
 	min-height: 100vh;
 }
 
+.skipLink {
+	position: fixed;
+	top: 0;
+	left: 100px;
+	display: block;
+	height: 0;
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+.displayed {
+	height: auto;
+}
+
 .header {
-	display: none;
 	grid-area: header;
-	@media (max-width: 767.98px) {
-		display: grid;
-	}
 }
 
 .sidebar {

@@ -35,7 +35,7 @@ export const Header: FC<HeaderProps> = ({ className, ...props }) => {
 	};
 
 	return (
-		<header className={cn(styles.header, className)} {...props}>
+		<header className={cn(className, styles.header)} {...props}>
 			<Logo />
 			<ButtonIcon appearance='white' icon='menu' onClick={() => setIsOpened(true)} />
 			<motion.div

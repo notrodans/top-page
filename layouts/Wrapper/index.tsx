@@ -1,22 +1,46 @@
-import { WrapperProps } from "./Wrapper.interface";
-import styles from "./Wrapper.module.scss";
 import { AppContextProvider, IAppContext } from "@context/app.context";
 import { Footer } from "@layouts/Footer";
 import { Header } from "@layouts/Header";
 import { Sidebar } from "@layouts/Sidebar";
-import { FC } from "react";
+import cn from "classnames";
 import { motion } from "framer-motion";
+import { FC, forwardRef, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { WrapperProps } from "./Wrapper.interface";
+import styles from "./Wrapper.module.scss";
 
-export const Wrapper: FC<WrapperProps> = ({ children }) => {
+export const Wrapper = forwardRef<HTMLDivElement, WrapperProps>(({ children }, ref) => {
+	const [isSkipLinkDisplayed, setIsSkipLinkDisplayed] = useState<boolean>(false);
+
+	const bodyRef = useRef<HTMLDivElement>(null);
+
+	const skipContentAction = (key: KeyboardEvent) => {
+		if (key.code === "Space" || key.code === "Enter") {
+			key.preventDefault();
+			bodyRef?.current?.focus();
+		}
+		setIsSkipLinkDisplayed(false);
+	};
+
 	return (
-		<div className={styles.wrapper}>
+		<div ref={ref} className={styles.wrapper}>
+			<a
+				onFocus={() => setIsSkipLinkDisplayed(true)}
+				tabIndex={1}
+				className={cn(styles.skipLink, {
+					[styles.displayed]: isSkipLinkDisplayed
+				})}
+				onKeyDown={skipContentAction}>
+				Сразу к содержанию
+			</a>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
 			<motion.main
+				ref={bodyRef}
+				tabIndex={0}
 				className={styles.body}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
+				initial={{ opacity: 0, transform: "translateY(15px)" }}
+				animate={{ opacity: 1, transform: "translateY(0px)" }}
+				exit={{ opacity: 0, transform: "translateY(15px)" }}
 				transition={{
 					stiffness: 300
 				}}>
@@ -25,7 +49,7 @@ export const Wrapper: FC<WrapperProps> = ({ children }) => {
 			<Footer className={styles.footer} />
 		</div>
 	);
-};
+});
 
 export const withLayout = <T extends Record<string, unknown> & IAppContext>(Component: FC<T>) => {
 	return function withLayoutComponent(props: T) {
