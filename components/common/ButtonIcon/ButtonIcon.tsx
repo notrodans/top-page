@@ -16,7 +16,8 @@ export const ButtonIcon: FC<ButtonIconProps> = ({
 			className={cn(styles.button, className, {
 				[styles.primary]: appearance === "primary",
 				[styles.white]: appearance === "white"
-			})}>
+			})}
+		>
 			<IconComponent />
 		</button>
 	);

@@ -3,23 +3,29 @@
 }
 
 .star {
-	&:not(:last-child) {
-		padding-right: 5px;
+	display: inline-block;
+}
+
+.filled {
+	svg {
+		fill: var(--primary);
 	}
-}
-
-.fill {
-	fill: var(--primary);
-}
-
-.editable {
-	cursor: pointer;
 }
 
 .error {
 	.star {
-		fill: var(--red)
+		svg {
+			fill: var(--red)
+		}
 	}
+}
+
+span:not(:last-child) > .star {
+	padding-right: 5px;
+}
+
+.editable {
+	cursor: pointer;
 }
 
 .errorMessage {

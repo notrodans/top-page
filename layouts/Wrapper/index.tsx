@@ -1,10 +1,11 @@
+import { Up } from "@components/common";
 import { AppContextProvider, IAppContext } from "@context/app.context";
 import { Footer } from "@layouts/Footer";
 import { Header } from "@layouts/Header";
 import { Sidebar } from "@layouts/Sidebar";
 import cn from "classnames";
 import { motion } from "framer-motion";
-import { FC, forwardRef, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { FC, forwardRef, KeyboardEvent, useRef, useState } from "react";
 import { WrapperProps } from "./Wrapper.interface";
 import styles from "./Wrapper.module.scss";
 
@@ -16,7 +17,7 @@ export const Wrapper = forwardRef<HTMLDivElement, WrapperProps>(({ children }, r
 	const skipContentAction = (key: KeyboardEvent) => {
 		if (key.code === "Space" || key.code === "Enter") {
 			key.preventDefault();
-			bodyRef?.current?.focus();
+			bodyRef.current?.focus();
 		}
 		setIsSkipLinkDisplayed(false);
 	};
@@ -25,11 +26,12 @@ export const Wrapper = forwardRef<HTMLDivElement, WrapperProps>(({ children }, r
 		<div ref={ref} className={styles.wrapper}>
 			<a
 				onFocus={() => setIsSkipLinkDisplayed(true)}
-				tabIndex={1}
+				tabIndex={0}
 				className={cn(styles.skipLink, {
 					[styles.displayed]: isSkipLinkDisplayed
 				})}
-				onKeyDown={skipContentAction}>
+				onKeyDown={skipContentAction}
+			>
 				Сразу к содержанию
 			</a>
 			<Header className={styles.header} />
@@ -43,10 +45,13 @@ export const Wrapper = forwardRef<HTMLDivElement, WrapperProps>(({ children }, r
 				exit={{ opacity: 0, transform: "translateY(15px)" }}
 				transition={{
 					stiffness: 300
-				}}>
+				}}
+				role='main'
+			>
 				{children}
 			</motion.main>
 			<Footer className={styles.footer} />
+			<Up />
 		</div>
 	);
 });

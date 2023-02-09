@@ -1,11 +1,11 @@
 import { Button, Card, Divider, Rating, Review, ReviewForm, Tag } from "@components/common";
 import { declOfNumber, priceRu } from "@helpers/helpers";
 import cn from "classnames";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { forwardRef, useRef, useState } from "react";
 import { ProductProps } from "./Product.interface";
 import styles from "./Product.module.scss";
-import { motion, Variants } from "framer-motion";
 
 export const Product = motion(
 	forwardRef<HTMLDivElement, ProductProps>(({ product, className, ...props }, ref) => {
@@ -18,6 +18,7 @@ export const Product = motion(
 				behavior: "smooth",
 				block: "start"
 			});
+			reviewRef.current?.focus();
 		};
 
 		const variants: Variants = {
@@ -51,17 +52,28 @@ export const Product = motion(
 					</div>
 					<div className={styles.title}>{product.title}</div>
 					<div className={styles.price}>
-						<span>{priceRu(product.price)}</span>
+						<span>
+							<span className='visuallyHidden'>цена</span>
+							{priceRu(product.price)}
+						</span>
 						{product.oldPrice && (
 							<Tag className={styles.oldPrice} color='green'>
+								<span className='visuallyHidden'>скидка</span>
 								{priceRu(product.price - product.oldPrice)}
 							</Tag>
 						)}
 					</div>
 					<div className={styles.credit}>
-						<span>{priceRu(product.credit)}</span>/мес
+						<span>
+							<span className='visuallyHidden'>кредит</span>
+							{priceRu(product.credit)}
+						</span>
+						/мес
 					</div>
 					<div className={styles.rating}>
+						<span className='visuallyHidden'>
+							{"рейтинг" + (product.reviewAvg ?? product.initialRating)}
+						</span>
 						<Rating rating={product.reviewAvg ?? product.initialRating} />
 					</div>
 					<div className={styles.tags}>
@@ -71,10 +83,12 @@ export const Product = motion(
 							</Tag>
 						))}
 					</div>
-					<div className={styles.priceTitle}>цена</div>
+					<div aria-hidden='true' className={styles.priceTitle}>
+						цена
+					</div>
 					<div className={styles.creditTitle}>кредит</div>
 					<div className={styles.rateTitle}>
-						<a href='#' onClick={scrollToReview}>
+						<a href='#ref' onClick={scrollToReview}>
 							{product.reviewCount}&nbsp;
 							{declOfNumber(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
 						</a>
@@ -112,10 +126,12 @@ export const Product = motion(
 							Узнать подробнее
 						</Button>
 						<Button
+							aria-expanded={isReviewOpened}
 							className={styles.button}
 							appearance='ghost'
 							arrow={isReviewOpened ? "down" : "right"}
-							onClick={() => setIsReviewOpen(prev => !prev)}>
+							onClick={() => setIsReviewOpen(prev => !prev)}
+						>
 							Читать отзывы
 						</Button>
 					</div>
@@ -123,21 +139,24 @@ export const Product = motion(
 				<motion.div
 					variants={variants}
 					initial={isReviewOpened ? "visible" : "hidden"}
-					animate={isReviewOpened ? "visible" : "hidden"}>
+					animate={isReviewOpened ? "visible" : "hidden"}
+				>
 					<Card
 						color='blue'
 						ref={reviewRef}
+						tabIndex={isReviewOpened ? 0 : -1}
 						className={cn(styles.reviews, {
 							[styles.closed]: !isReviewOpened,
 							[styles.opened]: isReviewOpened
-						})}>
+						})}
+					>
 						{product.reviews.map(r => (
 							<div key={r._id}>
 								<Review review={r} />
 								<Divider />
 							</div>
 						))}
-						<ReviewForm productId={product._id} />
+						<ReviewForm productId={product._id} isOpened={isReviewOpened} />
 					</Card>
 				</motion.div>
 			</div>

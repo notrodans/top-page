@@ -22,7 +22,8 @@
 }
 
 .error {
-	outline-color: var(--red);
+	border: 2px solid var(--red);
+	border-radius: 5px;
 }
 
 .textareaWrapper {

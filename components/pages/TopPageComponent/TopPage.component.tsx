@@ -22,11 +22,10 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, pag
 
 	return (
 		<div className={styles.wrapper}>
-			<Up />
 			<div className={styles.title}>
 				<Htag tag='h2'>{page.title}</Htag>
 				{products && (
-					<Tag size='s' color='gray'>
+					<Tag size='s' color='gray' aria-label={products.length + " курсов"}>
 						{products.length}
 					</Tag>
 				)}
@@ -54,12 +53,20 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({ firstCategory, pag
 			{page.seoText && (
 				<div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText }} />
 			)}
-			<Htag tag='h2'>Получаемые навыки</Htag>
-			{page.tags.map(t => (
-				<Tag key={t} color='primary'>
-					{t[0].toUpperCase() + t.slice(1)}
-				</Tag>
-			))}
+			{page.tags.length && (
+				<div>
+					<Htag className={styles.skillHTag} tag='h2'>
+						Получаемые навыки
+					</Htag>
+					<div className={styles.tags}>
+						{page.tags.map(t => (
+							<Tag className={styles.tag} key={t} color='primary'>
+								{t[0].toUpperCase() + t.slice(1)}
+							</Tag>
+						))}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

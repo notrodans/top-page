@@ -17,6 +17,7 @@
 	gap: 20px;
 	align-items: baseline;
 	justify-items: left;
+	margin-top: 50px;
 }
 
 .advantages {
@@ -25,25 +26,42 @@
 	}
 }
 
-.seo h1 {
-	margin: 0;
-	font-weight: 500;
-	font-size: 26px;
-	line-height: 35px;
-}
-.seo h2 {
-	margin: 0;
-	font-weight: 500;
-	font-size: 22px;
-	line-height: 30px;
+.seo {
+	h1 {
+		font-weight: 500;
+		font-size: 26px;
+		line-height: 35px;
+	}
 
-	&:not(:last-child) {
-		margin-bottom: 30px;
+	h2 {
+		font-weight: 500;
+		font-size: 22px;
+		line-height: 30px;
+
+		&:not(:last-child) {
+			margin-bottom: 30px;
+		}
+	}
+
+	h3 {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 27px;
 	}
 }
-.seo h3 {
-	margin: 0;
-	font-weight: 600;
-	font-size: 20px;
-	line-height: 27px;
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px 10px;
+
+	.tag {
+		margin: 0;
+	}
+}
+
+.skillHTag  {
+	&:not(:last-child) {
+		margin-bottom: 20px;
+	}
 }

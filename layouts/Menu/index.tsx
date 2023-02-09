@@ -28,10 +28,12 @@ export const Menu: FC = () => {
 	const variantsChildren: Variants = {
 		visible: {
 			opacity: 1,
-			height: 29
+			overflow: "visible",
+			height: "auto"
 		},
 		hidden: {
 			opacity: 0,
+			overflow: "hidden",
 			height: 0
 		}
 	};
@@ -64,7 +66,8 @@ export const Menu: FC = () => {
 								<div
 									className={cn(styles.firstLevel, {
 										[styles.firstLevelOpened]: m.id == firstCategory
-									})}>
+									})}
+								>
 									{m.icon}
 									<span>{m.name}</span>
 								</div>
@@ -91,7 +94,8 @@ export const Menu: FC = () => {
 								onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, m._id.secondCategory)}
 								className={styles.secondLevel}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
-								aria-expanded={m.isOpened}>
+								aria-expanded={m.isOpened}
+							>
 								{m._id.secondCategory}
 							</button>
 							<motion.ul
@@ -99,7 +103,8 @@ export const Menu: FC = () => {
 								variants={variants}
 								initial={m.isOpened ? "visible" : "hidden"}
 								animate={m.isOpened ? "visible" : "hidden"}
-								className={styles.secondLevelBlock}>
+								className={styles.secondLevelBlock}
+							>
 								{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
 							</motion.ul>
 						</li>
@@ -111,19 +116,29 @@ export const Menu: FC = () => {
 
 	const buildThirdLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
 		return pages.map(p => (
-			<motion.li key={p._id} variants={variantsChildren}>
+			<motion.li
+				key={p._id}
+				whileFocus={{ color: "var(--primary)" }}
+				whileHover={{ color: "var(--primary)" }}
+				variants={variantsChildren}
+			>
 				<Link href={`/${route}/${p.alias}`}>
 					<a
 						tabIndex={isOpened ? 0 : -1}
 						className={cn(styles.thirdLevel, {
 							[styles.thirdLevelActive]:
-								`/${route}/${p.alias}` === `/${router.query.type}/${router.query.alias}`
-						})}>
+								`/${route}/${p.alias}` === router.asPath.replace("#ref", "")
+						})}
+					>
 						{p.category}
 					</a>
 				</Link>
 			</motion.li>
 		));
 	};
-	return <div className={styles.menu}>{buildFirstLevel()}</div>;
+	return (
+		<nav role='navigation' className={styles.menu}>
+			{buildFirstLevel()}
+		</nav>
+	);
 };

@@ -21,7 +21,6 @@
 				"useTabs": true,
 				"tabWidth": 2,
 				"jsxSingleQuote": true,
-				"bracketSameLine": true,
 				"singleQuote": false,
 				"arrowParens": "avoid",
 				"printWidth": 100
@@ -33,6 +32,7 @@
 				"allowSingleExtends": true
 			}
 		],
+		"jsx-a11y/role-supports-aria-props": "off",
 		"react/display-name": "off"
 	}
 }

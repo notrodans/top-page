@@ -16,12 +16,14 @@
 	left: 100px;
 	display: block;
 	height: 0;
+	overflow: hidden;
 	color: var(--white);
 	background-color: var(--primary);
 }
 
 .displayed {
 	height: auto;
+	overflow: visible;
 }
 
 .header {

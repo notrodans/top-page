@@ -22,7 +22,8 @@ export const Tag: FC<TagProps> = ({
 				[styles.gray]: color === "gray",
 				[styles.green]: color === "green",
 				[styles.primary]: color === "primary"
-			})}>
+			})}
+		>
 			{href ? <a>{children}</a> : <>{children}</>}
 		</div>
 	);

@@ -23,6 +23,14 @@ a {
 * {
 	box-sizing: border-box;
 	font-family: inherit;
+	outline-color: var(--primary);
+}
+
+.visuallyHidden {
+	position: absolute;
+	width: 0px;
+	height: 0;
+	overflow: hidden;
 }
 
 :root {

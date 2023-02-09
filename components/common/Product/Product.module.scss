@@ -119,8 +119,16 @@
 }
 
 .reviews {
+	position: relative;
+	z-index: -5;
 	padding: 30px;
 	overflow: hidden;
+}
+
+.closed {}
+
+.opened {
+	z-index: 0;
 }
 
 .logo {

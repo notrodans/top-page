@@ -43,7 +43,8 @@ export const Header: FC<HeaderProps> = ({ className, ...props }) => {
 				initial={"closed"}
 				animate={isOpened ? "opened" : "closed"}
 				exit={"closed"}
-				className={styles.mobileMenu}>
+				className={styles.mobileMenu}
+			>
 				<Sidebar />
 				<ButtonIcon
 					className={styles.menuClose}

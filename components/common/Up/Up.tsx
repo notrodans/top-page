@@ -1,4 +1,5 @@
 import { useScrollY } from "@hooks/useScrollY";
+import cn from "classnames";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { ButtonIcon } from "..";
@@ -24,7 +25,8 @@ export const Up = () => {
 			animate={controls}
 			initial={{ opacity: 0 }}
 			onClick={scrollToTop}
-			className={styles.up}>
+			className={cn(styles.up)}
+		>
 			<ButtonIcon icon='arrow' />
 		</motion.div>
 	);

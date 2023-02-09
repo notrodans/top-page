@@ -13,7 +13,8 @@ export const Card = motion(
 					className={cn(styles.card, className, {
 						[styles.blue]: color === "blue"
 					})}
-					{...props}>
+					{...props}
+				>
 					{children}
 				</div>
 			);
