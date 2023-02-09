@@ -41,7 +41,7 @@ export const Rating = forwardRef<HTMLDivElement, RatingProps>(
 					aria-invalid={error ? true : false}
 					aria-valuemax={5}
 					aria-valuemin={1}
-					aria-valuenow={r}
+					aria-valuenow={rating}
 				>
 					<StarIcon />
 				</span>
