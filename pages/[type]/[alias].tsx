@@ -1,5 +1,5 @@
-import { TopPageComponentProps } from "@components/TopPageComponent/TopPage.interface";
 import { TopPageComponent } from "@components/index";
+import { TopPageComponentProps } from "@components/TopPageComponent/TopPage.interface";
 import { API } from "@helpers/api";
 import { firstLevelMenu } from "@helpers/helpers";
 import { MenuItem } from "@interfaces/menu.interface";
@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps<TopPageComponentProps> = async ({
 			notFound: true
 		};
 	}
-	const firstCategoryItem = firstLevelMenu.find(m => m.route == params.type);
+	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type);
 	if (!firstCategoryItem) {
 		return {
 			notFound: true
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps<TopPageComponentProps> = async ({
 		const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
 			firstCategory: firstCategoryItem.id
 		});
-		if (menu.length == 0) {
+		if (menu.length === 0) {
 			return {
 				notFound: true
 			};

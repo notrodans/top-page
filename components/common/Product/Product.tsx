@@ -24,11 +24,13 @@ export const Product = motion(
 		const variants: Variants = {
 			visible: {
 				height: "auto",
-				opacity: 1
+				opacity: 1,
+				pointerEvents: "auto"
 			},
 			hidden: {
 				opacity: 0,
-				height: 0
+				height: 0,
+				pointerEvents: "none"
 			}
 		};
 

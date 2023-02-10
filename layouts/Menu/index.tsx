@@ -2,23 +2,28 @@ import { AppContext } from "@context/app.context";
 import { firstLevelMenu } from "@helpers/helpers";
 import { FirstLevelMenuItem, PageItem } from "@interfaces/menu.interface";
 import cn from "classnames";
-import { motion, Variants } from "framer-motion";
+import { motion, useReducedMotion, Variants } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, KeyboardEvent, useContext } from "react";
+import { FC, KeyboardEvent, useContext, useState } from "react";
 import styles from "./Menu.module.scss";
 
 export const Menu: FC = () => {
 	const { menu, setMenu, firstCategory } = useContext(AppContext);
+	const [announce, setAnnounce] = useState<"closed" | "opened" | undefined>();
+	const shouldReduceMotion = useReducedMotion();
+
 	const router = useRouter();
 
 	const variants: Variants = {
 		visible: {
 			marginBottom: 20,
-			transition: {
-				when: "beforeChildren",
-				staggerChildren: 0.1
-			}
+			transition: shouldReduceMotion
+				? {}
+				: {
+						when: "beforeChildren",
+						staggerChildren: 0.1
+				  }
 		},
 		hidden: {
 			marginBottom: 0
@@ -32,8 +37,8 @@ export const Menu: FC = () => {
 			height: "auto"
 		},
 		hidden: {
-			opacity: 0,
-			overflow: "hidden",
+			opacity: shouldReduceMotion ? 1 : 0,
+			overflow: shouldReduceMotion ? "visible" : "hidden",
 			height: 0
 		}
 	};
@@ -42,6 +47,7 @@ export const Menu: FC = () => {
 		setMenu?.(
 			menu.map(m => {
 				if (m._id.secondCategory === secondCategory) {
+					setAnnounce(m.isOpened ? "closed" : "opened");
 					m.isOpened = !m.isOpened;
 				}
 				return m;
@@ -90,7 +96,6 @@ export const Menu: FC = () => {
 					return (
 						<li key={m._id.secondCategory}>
 							<button
-								tabIndex={0}
 								onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, m._id.secondCategory)}
 								className={styles.secondLevel}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
@@ -124,6 +129,9 @@ export const Menu: FC = () => {
 			>
 				<Link href={`/${route}/${p.alias}`}>
 					<a
+						aria-current={
+							`/${route}/${p.alias}` === router.asPath.replace("#ref", "") ? "page" : false
+						}
 						tabIndex={isOpened ? 0 : -1}
 						className={cn(styles.thirdLevel, {
 							[styles.thirdLevelActive]:
@@ -138,6 +146,11 @@ export const Menu: FC = () => {
 	};
 	return (
 		<nav role='navigation' className={styles.menu}>
+			{announce && (
+				<span role={"log"} className='visuallyHidden'>
+					{announce === "opened" ? "развёрнуто" : "свёрнуто"}
+				</span>
+			)}
 			{buildFirstLevel()}
 		</nav>
 	);
