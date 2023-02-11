@@ -27,7 +27,7 @@ export const Up = () => {
 			onClick={scrollToTop}
 			className={cn(styles.up)}
 		>
-			<ButtonIcon icon='arrow' />
+			<ButtonIcon aria-label='Наверх' icon='arrow' />
 		</motion.div>
 	);
 };
