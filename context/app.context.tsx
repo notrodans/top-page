@@ -20,6 +20,6 @@ export const AppContextProvider: FC<IAppContext> = ({ menu, firstCategory, child
 	};
 
 	return (
-		<AppContext.Provider value={{ menu, firstCategory, setMenu }}>{children}</AppContext.Provider>
+		<AppContext.Provider value={{ menu: menuState, firstCategory, setMenu }}>{children}</AppContext.Provider>
 	);
 };
